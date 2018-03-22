@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.jspringbot</groupId>
+		<artifactId>jspringbot-base</artifactId>
+		<version>1.6-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>company-template-automation</artifactId>
+	<name>web-automation-project</name>
+	<description>web automation using jspringbot</description>
+
+  <properties>
+    <mysql.version>5.1.13</mysql.version>
+    <jspringbot.version>1.6-SNAPSHOT</jspringbot.version>
+    <jspringbot.selenium.extension.version>2.1</jspringbot.selenium.extension.version>
+    <jspringbot.mail.version>1.0</jspringbot.mail.version>
+  </properties>
+
+  <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*.js</include>
+          <include>**/*.csv</include>
+        </includes>
+      </testResource>
+    </testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.jspringbot</groupId>
+				<artifactId>jspringbot-maven-plugin</artifactId>
+				<version>1.7-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<splitLogs>true</splitLogs>
+							<report>NONE</report>
+							<xunitFile>NONE</xunitFile>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Sonatype Nexus Staging</name>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-selenium</artifactId>
+      <version>${jspringbot.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-firefox-driver</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-expression</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-config</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-csv</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-http</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-date</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-pretty-logger</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-db</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-ssh</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.robertdeocampojr</groupId>
+      <artifactId>jspringbot-mail</artifactId>
+      <version>${jspringbot.mail.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.robertdeocampojr</groupId>
+      <artifactId>jspringbot-selenium-extension</artifactId>
+      <version>${jspringbot.selenium.extension.version}</version>
+    </dependency>
+  </dependencies>
+
+	<profiles>
+		<profile>
+			<id>LocalChrome</id>
+			<properties>
+				<browser>extension-chrome</browser>
+			</properties>
+		</profile>
+		<profile>
+			<id>LocalFirefox</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<browser>extension-firefox</browser>
+			</properties>
+		</profile>
+	</profiles>
+
+	<developers>
+		<developer>
+			<name>Robert de Ocampo</name>
+			<email>Robert.DO@mahathiinfotech.com</email>
+		</developer>
+	</developers>
+</project>
