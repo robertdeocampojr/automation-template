@@ -18,7 +18,7 @@
   <properties>
     <mysql.version>5.1.13</mysql.version>
     <jspringbot.version>1.6-SNAPSHOT</jspringbot.version>
-    <jspringbot.selenium.extension.version>2.1</jspringbot.selenium.extension.version>
+    <jspringbot.selenium.extension.version>2.10</jspringbot.selenium.extension.version>
     <jspringbot.mail.version>1.0</jspringbot.mail.version>
   </properties>
 
@@ -93,21 +93,6 @@
 	</pluginRepositories>
 
   <dependencies>
-    <dependency>
-      <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot-selenium</artifactId>
-      <version>${jspringbot.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-java</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-firefox-driver</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <dependency>
       <groupId>org.jspringbot</groupId>
       <artifactId>jspringbot-expression</artifactId>

@@ -20,15 +20,16 @@ Test Case - Demo1
     Maximize Window
 
     # input username and password
-    Type to Input Field     $[config:demo.username.field]       $[csv:value(input,'USERNAME')]
-    Type to Input Field     $[config:demo.password.field]       $[csv:value(input,'PASSWORD')]
-    Click Element           $[config:demo.login.button]
+    Type to Input Field     name=firstname          Robert
+    Type to Input Field     name=lastname           de Ocampo
+    Click Element           id=sex-0
 
+    Sleep       2s
     #validate valid login
-    Verify Element Should Be Visible        $[config:demo.home.message]
+    #Verify Element Should Be Visible        $[config:demo.home.message]
 
 Test Case - Demo2
-    [Tags]      fordemo
+    [Tags]      fordemo1
     [Documentation]  test different invalid user credentials
     Select Config Domain    web
 
